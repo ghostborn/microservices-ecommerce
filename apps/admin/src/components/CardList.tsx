@@ -141,7 +141,9 @@ const CardList = async ({ title }: { title: string }) => {
           Authorization: `Bearer ${token}`,
         },
       }
-    ).then((res) => res.json());
+    )
+      .then((res) => res.json())
+      .then((data) => (Array.isArray(data) ? data : []));
   }
 
   return (

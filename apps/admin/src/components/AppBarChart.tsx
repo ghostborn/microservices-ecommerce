@@ -8,7 +8,6 @@ import {
   type ChartConfig,
 } from "@/components/ui/chart";
 import { OrderChartType } from "@repo/types";
-import { use } from "react";
 import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from "recharts";
 
 const chartConfig = {
@@ -31,12 +30,8 @@ const chartConfig = {
 //   { month: "June", total: 214, successful: 140 },
 // ];
 
-const AppBarChart = ({
-  dataPromise,
-}: {
-  dataPromise: Promise<OrderChartType[]>;
-}) => {
-  const chartData = use(dataPromise);
+const AppBarChart = ({ data }: { data: OrderChartType[] }) => {
+  const chartData = Array.isArray(data) ? data : [];
   return (
     <div className="">
       <h1 className="text-lg font-medium mb-6">Total Revenue</h1>

@@ -1,5 +1,5 @@
 import Fastify from "fastify";
-import Clerk from "@clerk/fastify";
+import { clerkPlugin } from "@clerk/fastify";
 import { shouldBeUser } from "./middleware/authMiddleware.js";
 import { connectOrderDB } from "@repo/order-db";
 import { orderRoute } from "./routes/order.js";
@@ -8,7 +8,7 @@ import { runKafkaSubscriptions } from "./utils/subscriptions.js";
 
 const fastify = Fastify();
 
-fastify.register(Clerk.clerkPlugin);
+fastify.register(clerkPlugin);
 
 fastify.get("/health", (request, reply) => {
   return reply.status(200).send({
